@@ -13,8 +13,24 @@ export global ViewModel {
     in property <[WeatherRecord]> reccords;
 }
 
+component TemperatureGauge inherits BarGauge {
+    unit: " °C";
+    min-value: -25;
+    max-value: 50;
+    bar-color: Colors.hsv(320 - (root.level * 360), 1, 1);
+}
+
+component HumidityGauge inherits BarGauge {
+    unit: " %";
+    min-value: 0;
+    // TODO: Properly mix colors,
+    //       with balanced values in green
+    //       and extreme values in red.
+    bar-color: #ff0000.mix(#0000ff, root.level);
+}
+
 export component AppWindow inherits Window {
-    in-out property<int> counter: 42;
+    in-out property <int> counter: 42;
     callback request-increase-value();
 
     height: LayoutMetrics.window-height;
@@ -25,10 +41,16 @@ export component AppWindow inherits Window {
             text: "Slint Weather Station";
         }
 
-        BarGauge {
-            has-value: true;
-            value: 23.5;
-            max-value: 50;
+        HorizontalLayout {
+            TemperatureGauge {
+                has-value: true;
+                value: 30;
+            }
+
+            HumidityGauge {
+                has-value: true;
+                value: 45.8;
+            }
         }
 
         Text {

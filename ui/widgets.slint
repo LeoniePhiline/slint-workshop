@@ -38,15 +38,15 @@ export component StatusBar inherits Rectangle {
 
 export component BarGauge {
     // TODO: Set empty defaults (no has-value, 0)
-    in property <bool> has-value: true;
+    in property <bool> has-value: false;
     in property <float> value: 100;
-    in property <float> min-value: 0;
+    in property <float> min-value: -100;
     in property <float> max-value: 100;
 
-    in property <string> unit: " °C";
-    in property <brush> background <=> fill.background;
+    in property <string> unit: "";
+    in property <brush> bar-color <=> fill.background;
 
-    property <length> gauge-width: 40px;
+    property <length> gauge-width: 30px;
 
     // Level is between 0 and 1
 	out property <float> level:
@@ -67,7 +67,7 @@ export component BarGauge {
         x: 0;
         border-width: 2px;
         border-color: Palette.border;
-        border-radius: 4 * LayoutMetrics.padding;
+        border-radius: root.gauge-width / 2;
         width: root.gauge-width;
         height: root.height;
 
@@ -87,8 +87,8 @@ export component BarGauge {
     }
 
     value-text := Text {
-        text: "" + Math.round(root.value * 10)  / 10 + root.unit;
-        font-size: 32px;
-        x: 40px + LayoutMetrics.padding;
+        text: "" + Math.round(root.value * 10) / 10 + root.unit;
+        font-size: 16px;
+        x: root.gauge-width + LayoutMetrics.padding;
     }
 }
