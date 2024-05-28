@@ -37,7 +37,9 @@ export component StatusBar inherits Rectangle {
 }
 
 export component BarGauge {
-    in property <float> value: 40;
+    // TODO: Set empty defaults (no has-value, 0)
+    in property <bool> has-value: true;
+    in property <float> value: 100;
     in property <float> min-value: 0;
     in property <float> max-value: 100;
 
@@ -50,19 +52,16 @@ export component BarGauge {
 	out property <float> level:
 	    (Math.clamp(self.value, self.min-value, self.max-value) - self.min-value) / (self.max-value - self.min-value);
 
-    fill := Rectangle {
-        x: 0;
-        y: root.height - self.height;
-        width: root.gauge-width;
-        height: root.height * root.level;
-        background: Colors.red;
-        border-radius: 4 * LayoutMetrics.padding;
-
-        animate height {
-            duration: 200ms;
-            easing: ease-in-out;
+    states [
+        with-value when root.has-value: {
+            value-text.visible: true;
+            fill.visible: true;
         }
-    }
+        without-value when !root.has-value: {
+            value-text.visible: false;
+            fill.visible: false;
+        }
+    ]
 
     bar := Rectangle {
         x: 0;
@@ -71,6 +70,20 @@ export component BarGauge {
         border-radius: 4 * LayoutMetrics.padding;
         width: root.gauge-width;
         height: root.height;
+
+        clip: true;
+
+        fill := Rectangle {
+            x: 0;
+            y: parent.height - self.height;
+            height: root.height * root.level;
+            background: Colors.red;
+
+            animate height {
+                duration: 200ms;
+                easing: ease-in-out;
+            }
+        }
     }
 
     value-text := Text {
