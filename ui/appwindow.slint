@@ -1,5 +1,5 @@
 import { Button, VerticalBox, AboutSlint, Palette } from "std-widgets.slint";
-import { LayoutMetrics, TitleBar, StatusBar } from "widgets.slint";
+import { BarGauge, LayoutMetrics, TitleBar, StatusBar } from "widgets.slint";
 
 struct WeatherRecord {
     temperature: float, // Temperature in degrees Celsius
@@ -25,8 +25,10 @@ export component AppWindow inherits Window {
             text: "Slint Weather Station";
         }
 
-        Rectangle {
-            background: #00ff00;
+        BarGauge {
+            has-value: true;
+            value: 23.5;
+            max-value: 50;
         }
 
         Text {
