@@ -1,5 +1,17 @@
 import { Button, VerticalBox, AboutSlint } from "std-widgets.slint";
 
+struct WeatherRecord {
+    temperature: float, // Temperature in degrees Celsius
+    humidity: float,    // Humidity in percent
+    timestamp: string,
+}
+
+export global ViewModel {
+    in property <bool> have-data;
+    in property <WeatherRecord> weather;
+    in property <[WeatherRecord]> reccords;
+}
+
 export component TitleBar inherits Rectangle {
     in property <string> text <=> title-text.text;
 
