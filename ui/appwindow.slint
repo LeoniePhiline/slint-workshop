@@ -1,4 +1,5 @@
-import { Button, VerticalBox, AboutSlint } from "std-widgets.slint";
+import { Button, VerticalBox, AboutSlint, Palette } from "std-widgets.slint";
+import { LayoutMetrics, TitleBar, StatusBar } from "widgets.slint";
 
 struct WeatherRecord {
     temperature: float, // Temperature in degrees Celsius
@@ -12,41 +13,37 @@ export global ViewModel {
     in property <[WeatherRecord]> reccords;
 }
 
-export component TitleBar inherits Rectangle {
-    in property <string> text <=> title-text.text;
-
-    width: 100%;
-    height: 30px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-    // background: #cccccc;
-    title-text := Text {
-        font-size: 16px;
-    }
-}
-
 export component AppWindow inherits Window {
     in-out property<int> counter: 42;
     callback request-increase-value();
 
-    width: 320px;
-    height: 240px;
+    height: LayoutMetrics.window-height;
+    width: LayoutMetrics.window-width;
 
     VerticalBox {
-        alignment: space-between;
-
         TitleBar {
             text: "Slint Weather Station";
         }
+
+        Rectangle {
+            background: #00ff00;
+        }
+
         Text {
             horizontal-alignment: center;
             text: "Counter: \{root.counter}";
         }
+
         Button {
             text: "Increase value";
+
             clicked => {
                 root.request-increase-value();
             }
+        }
+
+        StatusBar {
+            text: ViewModel.weather.timestamp;
         }
     }
 }

@@ -1,0 +1,37 @@
+import { Palette } from "std-widgets.slint";
+
+export global LayoutMetrics {
+    out property <length> window-height: 240px;
+    out property <length> window-width: 240px;
+
+    out property <length> padding: 5px;
+}
+
+export component TitleBar inherits Rectangle {
+    in property <string> text <=> title-text.text;
+
+    width: 100%;
+    height: 30px;
+	padding-top: LayoutMetrics.padding;
+	padding-bottom: LayoutMetrics.padding;
+    background: Palette.alternate-background;
+
+    title-text := Text {
+        font-size: 16px;
+    }
+}
+
+export component StatusBar inherits Rectangle {
+	in property <string> text <=> status-text.text;
+
+	height: 24px;
+	padding-top: LayoutMetrics.padding;
+	padding-bottom: LayoutMetrics.padding;
+	background: Palette.alternate-background;
+
+	status-text := Text {
+		height: parent.height - parent.padding-top - parent.padding-bottom;
+		horizontal-alignment: center;
+		vertical-alignment: bottom;
+	}
+}
