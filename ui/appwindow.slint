@@ -1,11 +1,33 @@
 import { Button, VerticalBox, AboutSlint } from "std-widgets.slint";
 
+export component TitleBar inherits Rectangle {
+    in property <string> text <=> title-text.text;
+
+    width: 100%;
+    height: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    // background: #cccccc;
+    title-text := Text {
+        font-size: 16px;
+    }
+}
+
 export component AppWindow inherits Window {
     in-out property<int> counter: 42;
     callback request-increase-value();
 
+    width: 320px;
+    height: 240px;
+
     VerticalBox {
+        alignment: space-between;
+
+        TitleBar {
+            text: "Slint Weather Station";
+        }
         Text {
+            horizontal-alignment: center;
             text: "Counter: \{root.counter}";
         }
         Button {
