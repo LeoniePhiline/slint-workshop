@@ -1,40 +1,46 @@
-# Slint Rust Template
+# Oxidize Conference Slint Workshop
 
-A template for a Rust application that's using [Slint](https://slint.rs) for the user interface.
+## Workshop agenda
 
-## About
+### 1. Starting with Slint
 
-This template helps you get started developing a Rust application with Slint as toolkit
-for the user interface. It demonstrates the integration between the `.slint` UI markup and
-Rust code, how to trigger react to callbacks, get and set properties and use basic widgets.
+a) Visual Studio Extension
+b) boilerplate app
 
-## Usage
+### 2. Slint Language
 
-1. Install Rust by following the [Rust Getting Started Guide](https://www.rust-lang.org/learn/get-started).
-   Once this is done, you should have the ```rustc``` compiler and the ```cargo``` build system installed in your path.
-2. Install [`cargo-generate`](https://github.com/cargo-generate/cargo-generate)
-    ```
-    cargo install cargo-generate
-    ```
-3. Set up a sample project with this template
-    ```
-    cargo generate --git https://github.com/slint-ui/slint-rust-template --name my-project
-    cd my-project
-    ```
-3. Build with cargo
-    ```
-    cargo build
-    ```
-4. Run the application binary
-     ```
-     cargo run
-     ```
+a) Syntax and Concepts
+b) Widgets
+c) Building a simple demo UI
 
-We recommend using an IDE for development, along with our [LSP-based IDE integration for `.slint` files](https://github.com/slint-ui/slint/blob/master/tools/lsp/README.md). You can also load this project directly in [Visual Studio Code](https://code.visualstudio.com) and install our [Slint extension](https://marketplace.visualstudio.com/items?itemName=Slint.slint).
+### 3. Slint Rust API
 
-## Next Steps
+a) slint-build crate
+b) Threading and Event-Loop
+c) Platform-specific modules
+d) Model trait
+e) Implementing a Rust backend for demo UI
 
-We hope that this template helps you get started and you enjoy exploring making user interfaces with Slint. To learn more
-about the Slint APIs and the `.slint` markup language check out our [online documentation](https://slint.dev/docs).
+### 4. Target Platforms
 
-Don't forget to edit this README to replace it by yours
+a) Desktop
+b) WebAssembly
+c) Embedded Linux
+d) Microcontrollers
+e) Android
+
+### 5. Advanced Topics
+
+a) Implementing a custom control
+b) Layouts
+c) FilterModel
+d) Backend Com
+e) Integrating custom OpenGL contents
+f) Playing Video with GStreamer
+
+### 6. Contributing to Slint
+
+a) The Slint source code repository
+b) Submitting issues
+c) The Slint community
+
