@@ -87,7 +87,7 @@ export component BarGauge {
     }
 
     value-text := Text {
-        text: "" + Math.round(root.value) + root.unit;
+        text: "" + Math.round(root.value * 10)  / 10 + root.unit;
         font-size: 32px;
         x: 40px + LayoutMetrics.padding;
     }
